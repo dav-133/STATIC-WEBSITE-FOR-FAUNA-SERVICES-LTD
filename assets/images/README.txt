@@ -1,0 +1,1 @@
+Optional photography filenames are documented in the root README. The website automatically shows professional icon placeholders if these photos are absent.
