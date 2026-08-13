@@ -170,12 +170,171 @@
    <a href="mailto:faunaservicesltdnkr@gmail.com"><i class="fa-solid fa-envelope"></i><span><small>EMAIL</small><b>faunaservicesltdnkr@gmail.com</b><em>Send us a message</em></span></a>
    <div><i class="fa-solid fa-location-dot"></i><span><small>LOCATION</small><b>Fauna Supermarket</b><em>Nakuru Pipeline, Nakuru, Kenya</em></span></div>
   </div>
-  <form class="contact-form" id="contactForm">
-   <div class="form-row"><label>Full Name<input required name="name" placeholder="Your full name"></label><label>Email Address<input required type="email" name="email" placeholder="you@example.com"></label></div>
-   <div class="form-row"><label>Phone Number<input required name="phone" placeholder="07XX XXX XXX"></label><label>Subject<input required name="subject" placeholder="How can we help?"></label></div>
-   <label>Message<textarea required name="message" rows="6" placeholder="Write your inquiry here"></textarea></label>
-   <button class="btn btn-navy" type="submit">Send Inquiry <i class="fa-solid fa-paper-plane"></i></button><p class="form-note">This static form opens your email application with the completed message. Connect FormSubmit or Formspree later for direct online submissions.</p>
-  </form>
+<form
+  id="contactForm"
+  action="https://formsubmit.co/ajax/faunaservicesltdnkr@gmail.com"
+  method="POST"
+>
+
+  <!-- FormSubmit configuration -->
+  <input
+    type="hidden"
+    name="_subject"
+    value="New Inquiry — Fauna Services Ltd Website"
+  >
+
+  <input
+    type="hidden"
+    name="_template"
+    value="table"
+  >
+
+  <input
+    type="hidden"
+    name="_captcha"
+    value="true"
+  >
+
+  <div class="form-group">
+
+    <label for="full-name">Full Name</label>
+
+    <input
+      type="text"
+      id="full-name"
+      name="name"
+      placeholder="Enter your full name"
+      autocomplete="name"
+      required
+    >
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label for="email">Email Address</label>
+
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="Enter your email address"
+      autocomplete="email"
+      required
+    >
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label for="phone">Phone Number</label>
+
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      placeholder="Enter your phone number"
+      autocomplete="tel"
+      required
+    >
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label for="subject">Subject</label>
+
+    <select
+      id="subject"
+      name="inquiry_type"
+      required
+    >
+
+      <option value="">Select an inquiry type</option>
+
+      <option value="Wholesale Inquiry">
+        Wholesale Inquiry
+      </option>
+
+      <option value="Retail Inquiry">
+        Retail Inquiry
+      </option>
+
+      <option value="FMCG Distribution">
+        FMCG Distribution
+      </option>
+
+      <option value="LPG Gas Inquiry">
+        LPG Gas Inquiry
+      </option>
+
+      <option value="Business Partnership">
+        Business Partnership
+      </option>
+
+      <option value="Employment / Career">
+        Employment / Career
+      </option>
+
+      <option value="General Inquiry">
+        General Inquiry
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="form-group full-width">
+
+    <label for="message">Message</label>
+
+    <textarea
+      id="message"
+      name="message"
+      rows="7"
+      placeholder="Write your inquiry here..."
+      required
+    ></textarea>
+
+  </div>
+
+
+  <div class="form-submit">
+
+    <button
+      type="submit"
+      id="sendInquiryBtn"
+      class="send-inquiry-btn"
+    >
+
+      <span class="button-text">
+        Send Inquiry
+      </span>
+
+      <span
+        class="button-spinner"
+        aria-hidden="true"
+      ></span>
+
+    </button>
+
+  </div>
+
+
+  <!-- Status message -->
+
+  <div
+    id="formStatus"
+    class="form-status"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+</form> 
  </div>
  <div class="map"><iframe src="https://www.google.com/maps?q=Fauna+Supermarket,+Nakuru,+Kenya&output=embed" loading="lazy" title="Fauna Supermarket location" allowfullscreen></iframe></div>
 </div></section>
