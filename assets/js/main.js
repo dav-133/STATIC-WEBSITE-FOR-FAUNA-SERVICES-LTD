@@ -1,3 +1,174 @@
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const form = document.getElementById("contactForm");
+  const button = document.getElementById("sendInquiryBtn");
+  const buttonText = button.querySelector(".button-text");
+  const status = document.getElementById("formStatus");
+
+
+  if (!form) {
+    console.error("Contact form not found.");
+    return;
+  }
+
+
+  form.addEventListener("submit", async function (event) {
+
+    /*
+     * Stop the browser from leaving the website.
+     */
+    event.preventDefault();
+
+
+    /*
+     * Make sure the browser's built-in
+     * validation is satisfied.
+     */
+    if (!form.checkValidity()) {
+
+      form.reportValidity();
+
+      return;
+
+    }
+
+
+    /*
+     * Clear previous status.
+     */
+
+    status.className = "form-status";
+
+    status.textContent = "";
+
+
+    /*
+     * Change button to:
+     *
+     * Sending...
+     */
+
+    button.disabled = true;
+
+    button.classList.add("sending");
+
+    buttonText.textContent = "Sending...";
+
+
+    /*
+     * Collect all form information.
+     */
+
+    const formData = new FormData(form);
+
+
+    try {
+
+      /*
+       * Send the form to FormSubmit
+       * without leaving the page.
+       */
+
+      const response = await fetch(
+        form.action,
+        {
+          method: "POST",
+
+          body: formData,
+
+          headers: {
+            "Accept": "application/json"
+          }
+        }
+      );
+
+
+      /*
+       * Check whether FormSubmit
+       * accepted the submission.
+       */
+
+      if (!response.ok) {
+
+        throw new Error(
+          "Unable to submit the inquiry."
+        );
+
+      }
+
+
+      /*
+       * SUCCESS
+       */
+
+      button.classList.remove("sending");
+
+      buttonText.textContent = "Inquiry Sent Successfully";
+
+      status.className =
+        "form-status success";
+
+      status.textContent =
+        "Thank you. Your inquiry has been received. Our team will get back to you shortly.";
+
+
+      /*
+       * Clear the form.
+       */
+
+      form.reset();
+
+
+      /*
+       * Keep the success message
+       * visible for 5 seconds.
+       */
+
+      setTimeout(function () {
+
+        button.disabled = false;
+
+        buttonText.textContent = "Send Inquiry";
+
+        status.className = "form-status";
+
+        status.textContent = "";
+
+      }, 5000);
+
+
+    } catch (error) {
+
+      /*
+       * ERROR
+       */
+
+      console.error(
+        "Form submission error:",
+        error
+      );
+
+
+      button.classList.remove("sending");
+
+      button.disabled = false;
+
+      buttonText.textContent = "Try Again";
+
+
+      status.className =
+        "form-status error";
+
+      status.textContent =
+        "We could not send your inquiry. Please check your internet connection and try again.";
+
+
+    }
+
+  });
+
+});
 document.addEventListener("DOMContentLoaded",()=>{const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];AOS.init({duration:700,once:true,offset:60});setTimeout(()=>$("#pageLoader").classList.add("hide"),500);
 const header=$("#siteHeader"),progress=$("#scrollProgress"),back=$("#backTop");window.addEventListener("scroll",()=>{let y=scrollY,max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(y/max*100)+"%";header.classList.toggle("scrolled",y>10);back.classList.toggle("show",y>600)});back.onclick=()=>scrollTo({top:0,behavior:"smooth"});
 const menu=$("#menuToggle"),nav=$("#mainNav");menu.onclick=()=>{nav.classList.toggle("open");menu.setAttribute("aria-expanded",nav.classList.contains("open"));menu.querySelector("i").className=nav.classList.contains("open")?"fa-solid fa-xmark":"fa-solid fa-bars"};$$(".main-nav a").forEach(a=>a.onclick=()=>{nav.classList.remove("open");menu.setAttribute("aria-expanded","false")});
